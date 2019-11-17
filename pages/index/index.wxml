@@ -1,5 +1,62 @@
-<!--pages/index/index.wxml-->
-<text class="iconfont icon-shoucang" selectable="false" space="false" decode="false">
-    
-</text>
+<!-- -->
+<SeachInput></SeachInput>
+  
+ <!--轮播图 -->
+ <view>
+     <swiper indicator-dots autoplay circular class="swiper_height">
+    <swiper-item 
+    wx:for="{{swiperData}}"
+    wx:key="goods_id" >
+        
+        <image  src="{{item.image_src}}" mode="widthFix" />
+          
+    </swiper-item>
+      
+</swiper>
+ </view>
+
+<!--导航栏 -->
+<view class="tap">
+    <navigator  class="tap_a" wx:for="{{tapData}}" wx:key="index" >
+        <image src="{{item.image_src}}" mode="widthFix" />
+          
+    </navigator>
+      
+</view>
+
+<!-- 楼层-->
+<view class="floor">
+    <view    
+    wx:for="{{floorData}}" 
+    wx:for-item="item"  
+     wx:key="index">
+
+
+      <image class="" src="{{item.floor_title.image_src}}" mode="widthFix"  />
+      
+              
+    <view class="floor_Finale">
+     <navigator 
+     class="floor_Finale_group" 
+      wx:for="{{item.product_list}}" 
+      wx:for-item="item2" 
+      wx:for-index="index2"  
+      wx:key="item2.name">
+                <image class="hehe" src="{{item2.image_src}}" mode="{{index2===0?'widthFix':'scaleToFill'}}"  />
+                  
+            </navigator>
+           
+     
+           
+
+    </view>  
+
+ </view>
+
+
+</view>
+  
+  
+   
+
   

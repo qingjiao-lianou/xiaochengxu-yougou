@@ -1,4 +1,43 @@
 /* pages/index/index.wxss */
-.icon-shoucang{
-    color: var(--themeColor);
+/* 轮播图 */
+.swiper_height{
+    height: 340rpx;
 }
+
+/* 导航栏 */
+.tap{
+    display: flex;
+}     
+
+.tap_a {
+   flex: 1;
+   padding: 20rpx;
+}
+
+/* 楼层 */
+
+
+
+
+.floor_Finale_group{
+   float: left;
+   overflow: hidden;
+  width: 33.33333%;
+  
+  border-left: #fff solid 2px;
+  border-right: #fff solid 2px
+  
+}
+
+.floor_Finale_group image:nth-last-child(-n+4){
+   display: block;
+
+     /* height:calc(232 / 386 = 750rpx / 3 / ); */
+     height:calc( 750rpx / 3 * 386 /232 / 2 );
+     border-bottom: #fff solid 4px
+}
+
+
+
+
+

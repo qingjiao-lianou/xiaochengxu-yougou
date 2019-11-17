@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "首页"
+  "usingComponents": {
+    "SeachInput":"../../components/SeachInput/index"
+  },
+  "navigationBarTitleText": "黑马优购"
 }
