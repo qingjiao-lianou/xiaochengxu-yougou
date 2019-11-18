@@ -1,0 +1,48 @@
+/* pages/category/index.wxss */
+.category_pages{
+    height: ~'calc( 100vh - 90rpx)';
+    // background-color: aqua;
+    display: flex;
+}
+
+// 左菜单
+.category_menu{
+   flex: 1;
+   .category_menu_title{
+       display: flex;
+       height: 80rpx;
+       justify-content: center;
+       align-items: center;
+   }
+}
+
+.native{
+    color: var(--themeColor);
+    border-left: red 2px solid;
+}
+
+// 右内容
+.category_content{
+    // background-color: red;
+flex: 3;
+.category_content_title{
+    display: flex;
+    height: 80rpx;
+    justify-content: center;
+    align-items: center;
+};
+
+.category_content_ground{
+    display: flex;
+    flex-wrap: wrap;
+    .goods_item{
+        width: 33.3%;
+        text-align: center;
+        image{
+            width:60%;
+        }
+    }
+
+}
+
+}

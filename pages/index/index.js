@@ -1,4 +1,9 @@
 // pages/index/index.js
+
+import { request } from '../../request/index.js'
+
+
+
 Page({
 
   /**
@@ -10,7 +15,7 @@ Page({
     //  导航栏数据
     tapData: [],
     // 楼层数据
-      floorData:[]
+    floorData: []
   },
 
   /**
@@ -25,41 +30,34 @@ Page({
 
   // 获取轮播图数据
   getSwiperdata() {
-    wx.request({
-      url: 'https://api.zbztb.cn/api/public/v1/home/swiperdata',
-
-      success: (res) => {
-        // console.log(res.data.message)
-        this.setData({
-          swiperData: res.data.message
-        })
-      },
-
-    });
+    request({
+      url: '/home/swiperdata'
+    }).then(res => {
+      this.setData({
+        swiperData: res.data.message
+      })
+    })
   },
   // 获取导航栏
   getTap() {
-    wx.request({
-      url: 'https://api.zbztb.cn/api/public/v1/home/catitems',
-      success: (res) => {
-        // console.log(res)
-        this.setData({
-          tapData: res.data.message
-        })
-      }
+    request({
+      url: '/home/catitems'
+    }).then(res => {
+      this.setData({
+        tapData: res.data.message
+      })
     })
   },
   // 获取楼层图片
-  getFloor() {
-    wx.request({
-      url: 'https://api.zbztb.cn/api/public/v1/home/floordata',
-      success: (res) => {
-        // console.log(res)
-        this.setData({
-          floorData:res.data.message
-        })
-      }
+  getFloor(){
+    request({
+      url: '/home/floordata'
+    }).then(res => {
+      this.setData({
+        floorData: res.data.message
+      })
     })
+
   }
 
 })

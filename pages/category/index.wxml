@@ -1,2 +1,61 @@
 <!--pages/category/index.wxml-->
-<text>pages/category/index.wxml</text>
+<SeachInput></SeachInput>
+
+<view class="category_pages">
+    <scroll-view scroll-y  class="category_menu">
+      
+<view class="category_menu_title {{currentIndex === index ? 'native' : ''}}" 
+wx:for="{{menuData}}"
+ wx:key="*this" 
+ bindtap="handleMenu"
+ data-index="{{index}}">
+   
+        {{item}}
+  
+      
+</view>
+  
+       
+    </scroll-view>
+
+
+      <scroll-view scroll-y scroll-top="{{scrollTop}}" class="category_content">
+        <view wx:for="{{goodsData}}"
+        wx:for-index="index1"
+        wx:for-item="item1"
+        wx:key="index1">
+            <view class="category_content_title">
+            <text class="" >/</text>
+               <text class="" >{{item1.cat_name}}</text>
+             <text class="" >/</text>
+            </view>
+
+            <view class="category_content_ground">
+                  <navigator class="goods_item" 
+                  wx:for="{{item1.children}}"
+                 wx:for-index="index2"
+                  wx:for-item="item2"
+                  wx:key="cat_id"
+                  url="/pages/goods_list/index?cid={{item2.cat_id}}">
+                <image class="" src="{{item2.cat_icon}}" mode="widthFix" lazy-load="false"  />
+                <view>{{item2.cat_name}}</view>
+                  
+                  
+            </navigator>
+            </view>
+              
+          
+              
+              
+
+
+
+        </view>
+          
+
+
+      </scroll-view>
+        
+
+</view>
+  
