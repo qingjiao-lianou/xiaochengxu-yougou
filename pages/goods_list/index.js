@@ -1,66 +1,114 @@
 // pages/goods_list/index.js
+
+import { request } from '../../request/index.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    goodsTap: [
+      { id: 0, text: '综合' },
+      { id: 1, text: '销量' },
+      { id: 2, text: '价格' }
+    ],
+    //  当前索引
+    currentIndex: 0,
+    // 商品数据
+    goodsList: [],
+    // 底线
+    isNoLine: false
   },
+
+  // 全局参数对象
+  itemListSearch: {
+    query: '',
+    cid: '',
+    pagenum: 1,
+    pagesize: 10
+  },
+  // 总页数
+  sumTotal: '',
+
+
+
+  binditemChange(e) {
+    // console.log(e)
+    this.setData({
+      currentIndex: e.detail.index
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(option) {
+    //  console.log(option);
+    const { cid } = option
+    this.itemListSearch.cid = cid
+    //  console.log(this.itemListSearch);
+    this.getItemListSearch()
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  // 获取列表数据
+  getItemListSearch() {
+    request({
+      url: '/goods/search',
+      data: this.itemListSearch
+    }).then(res => {
+      // console.log(res);
+      const oldList = this.data.goodsList
+      const { goods } = res.data.message
+      const newList = goods
+      this.sumTotal = Math.ceil(res.data.message.total / this.itemListSearch.pagesize)
+      // console.log(this.sumTotal);
+
+      this.setData({
+        goodsList: [...oldList, ...newList]
+      })
+
+      // 请求完毕后关闭刷新窗口
+      wx.stopPullDownRefresh()
+    })
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  // 页面上拉触底事件的处理函数
+  onReachBottom() {
+    if (this.itemListSearch.pagenum >= this.sumTotal) {
+      wx.showToast({
+        title: '没有了',
+        icon: 'none',
+        duration: 2000
+      });
+      this.setData({
+        isNoLine: true
+
+      })
+      // console.log(this.data.isNoLine);
+
+    } else {
+      // 获取下一页数据
+      this.itemListSearch.pagenum++
+      this.getItemListSearch()
+    }
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  // 下拉刷新页面
+  onPullDownRefresh() {
+    // console.log('haha');
+    this.itemListSearch.pagenum = 1,
+      this.setData({
+        goodsList: []
+      }),
+      this.getItemListSearch()
 
   }
+
+
 })

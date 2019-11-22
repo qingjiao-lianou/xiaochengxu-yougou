@@ -1,2 +1,48 @@
 <!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<SeachInput></SeachInput>
+<goodstap goodsTap="{{goodsTap}}" currentIndex="{{currentIndex}}" binditemChange='binditemChange'
+    goodsList="{{goodsList}}">
+
+    <view wx:if="{{currentIndex === 0}}">
+        <navigator class="goods_content" wx:for="{{goodsList}}" wx:key="item.goods_id">
+
+
+
+            <!-- 内容图片 -->
+
+            <view class="goods_content_img">
+
+                <image
+                    src="{{item.goods_small_logo || 'http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg'}}"
+                    mode="widthFix" />
+
+
+            </view>
+
+
+
+
+
+
+            <view class="goods_content_item">
+                <!-- 内容标题 -->
+                <text>
+                    {{item.goods_name}}
+                </text>
+                <!-- 价格 -->
+                <text>
+                    ￥{{item.goods_price}}
+                </text>
+
+            </view>
+
+        </navigator>
+
+        <view class="base_line" wx:if="{{isNoLine}}">
+            ------我是有底线的-------
+        </view>
+
+    </view>
+    <view wx:elif="{{currentIndex === 1}}">2 </view>
+    <view wx:else>3 </view>
+</goodstap>

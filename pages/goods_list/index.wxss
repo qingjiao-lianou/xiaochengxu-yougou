@@ -1,1 +1,33 @@
 /* pages/goods_list/index.wxss */
+.goods_content{
+    display: flex;
+    /* padding: 10rpx; */
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.goods_content_img{
+    flex: 1;
+    /* padding: 15rpx; */
+    /* margin-right: 30rpx; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.goods_content_img image{
+    width: 60%;
+    /* height: 60%; */
+}
+
+.goods_content_item{
+    flex: 2;
+    /* display: flex; */
+    padding:20rpx;
+}
+
+.base_line{
+    height: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

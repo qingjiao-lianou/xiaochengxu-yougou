@@ -1,0 +1,16 @@
+<!--components/goodstap/index.wxml-->
+<view class="goodstap">
+    <!-- 标题 -->
+    <view class="goodstap_title">
+        <view class="goodstap_title_content {{currentIndex === index?'native':''}}" wx:for="{{goodsTap}}" wx:key="id"
+            bindtap="handleitem" data-index="{{index}}">
+            {{item.text}}</view>
+
+
+    </view>
+    <!-- 综合内容部分 -->
+    <view>
+        <slot></slot>
+    </view>
+      
+</view>
