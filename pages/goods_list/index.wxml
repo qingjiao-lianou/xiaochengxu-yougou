@@ -4,7 +4,8 @@
     goodsList="{{goodsList}}">
 
     <view wx:if="{{currentIndex === 0}}">
-        <navigator class="goods_content" wx:for="{{goodsList}}" wx:key="item.goods_id">
+        <navigator class="goods_content" wx:for="{{goodsList}}" wx:key="item.goods_id" 
+         url="/pages/goods_detail/index?goods_id={{item.goods_id}}">
 
 
 

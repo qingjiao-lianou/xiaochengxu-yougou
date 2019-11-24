@@ -1,5 +1,5 @@
 import { request } from '../../request/index.js'
-
+import regeneratorRuntime from '../../lib/runtime/runtime';
 // pages/category/index.js
 Page({
 
@@ -12,7 +12,7 @@ Page({
     // 当前索引
     currentIndex: 0,
     // 竖滑动位置
-    scrollTop:0
+    scrollTop: 0
   },
 
 
@@ -52,34 +52,31 @@ Page({
   },
 
   // 获取分类数据
-  getCategoryData() {
-    request({
-      url: '/categories'
-    }).then(res => {
-      //  console.log(res)
-      this.getdata = res.data.message
-      // 缓存数据
-      wx.setStorageSync('cates', {
-        data: this.getdata,
-        // 时间
-        time: Date.now()
-      });
+  async getCategoryData() {
+    const res = await request({url: '/categories'})
+    this.getdata = res
+    // 缓存数据
+    wx.setStorageSync('cates', {
+      data: this.getdata,
+      // 时间
+      time: Date.now()
+    });
 
-      this.setData({
-        menuData: this.getdata.map(v => {
-          return v.cat_name
-        }),
-        goodsData: this.getdata[0].children
+    this.setData({
+      menuData: this.getdata.map(v => {
+        return v.cat_name
+      }),
+      goodsData: this.getdata[0].children
 
-      })
     })
+
   },
 
   //点击菜单显示数据
   handleMenu(e) {
     const { index } = e.target.dataset;
     this.setData({
-      scrollTop:0,
+      scrollTop: 0,
       currentIndex: index,
       goodsData: this.getdata[index].children
     })

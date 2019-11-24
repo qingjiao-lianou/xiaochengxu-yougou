@@ -1,5 +1,5 @@
 // pages/goods_list/index.js
-
+import regeneratorRuntime from '../../lib/runtime/runtime';
 import { request } from '../../request/index.js'
 
 Page({
@@ -54,25 +54,18 @@ Page({
   },
 
   // 获取列表数据
-  getItemListSearch() {
-    request({
-      url: '/goods/search',
-      data: this.itemListSearch
-    }).then(res => {
-      // console.log(res);
-      const oldList = this.data.goodsList
-      const { goods } = res.data.message
-      const newList = goods
-      this.sumTotal = Math.ceil(res.data.message.total / this.itemListSearch.pagesize)
-      // console.log(this.sumTotal);
-
-      this.setData({
-        goodsList: [...oldList, ...newList]
-      })
-
-      // 请求完毕后关闭刷新窗口
-      wx.stopPullDownRefresh()
+  async getItemListSearch() {
+    const res = await request({url: '/goods/search',data: this.itemListSearch })
+    const oldList = this.data.goodsList
+    const { goods } = res
+    const newList = goods
+    this.sumTotal = Math.ceil(res.total / this.itemListSearch.pagesize)
+    this.setData({
+      goodsList: [...oldList, ...newList]
     })
+    // 请求完毕后关闭刷新窗口
+    wx.stopPullDownRefresh()
+
 
   },
 
