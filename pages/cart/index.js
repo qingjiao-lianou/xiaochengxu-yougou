@@ -1,66 +1,38 @@
 // pages/cart/index.js
+import regeneratorRuntime from '../../lib/runtime/runtime';
+import { openSetting, chooseAddress, getSetting } from '../../request/index.js'
+
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+
   data: {
 
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+
+  handleGet() {
+    this.getShippingAddress()
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  //  获取收货地址
+  async getShippingAddress() {
+    // 获取用户授权状态
+    const res1 = await getSetting()
+    const auth = res1.authSetting["scope.address"]
+    // 判断  如果点击取消
+    if (auth === false) {
+     // 诱导用户打开授权界面
+     await openSetting()
+    }
+    // 获取用户地址
+    const res3 = await chooseAddress()
+    console.log(res3);
 
-  },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
+
 })

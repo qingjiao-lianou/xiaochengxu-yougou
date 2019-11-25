@@ -1,2 +1,2 @@
 <!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
+<button  bindtap="handleGet">获取收货地址</button>

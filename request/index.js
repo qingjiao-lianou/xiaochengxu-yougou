@@ -3,6 +3,8 @@
 const baseUrl = "https://api.zbztb.cn/api/public/v1"
 var requestTime = 0
 
+
+// pr0mise形式的异步
 export const request = function (params) {
     wx.showLoading({
         title: '加载中',
@@ -34,6 +36,52 @@ export const request = function (params) {
                 // console.log(requestTime)
 
             }
+        });
+
+    })
+}
+
+// promise形式的getSetting
+export const getSetting = () => {
+    return new Promise((resolve, reject) => {
+        wx.getSetting({
+            success: (result) => {
+                resolve(result)
+            },
+            fail: (err) => {
+                reject(err)
+            },
+            complete: () => { }
+        });
+
+    })
+}
+// promise形式的openSetting
+export const openSetting = () => {
+    return new Promise((resolve, reject) => {
+        wx.openSetting({
+            success: (result) => {
+                resolve(result)
+            },
+            fail: (err) => {
+                reject(err)
+            },
+            complete: () => { }
+        });
+
+    })
+}
+// promise形式的chooseAddress
+export const chooseAddress = () => {
+    return new Promise((resolve, reject) => {
+        wx.chooseAddress({
+            success: (result) => {
+                resolve(result)
+            },
+            fail: (err) => {
+                reject(err)
+            },
+            complete: () => { }
         });
 
     })
