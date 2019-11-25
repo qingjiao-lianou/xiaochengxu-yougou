@@ -78,19 +78,21 @@ Page({
         goods_name: goodsDeailData.goods_name,
         goods_price: goodsDeailData.goods_price,
         goods_small_logo: goodsDeailData.goods_small_logo,
-        num: 1
+        num: 1,
+        checked:true
       })
 
 
     } else {
       carList[index].num++
-      wx.showToast({
-        title: '加入购物车成功',
-        mask: true,
-
-      });
+    
 
     }
+    wx.showToast({
+      title: '加入购物车成功',
+      mask: true,
+
+    });
     // 从新存到本地
     wx.setStorageSync('cart', carList);
   }

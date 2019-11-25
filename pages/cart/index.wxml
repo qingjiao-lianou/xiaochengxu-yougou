@@ -1,2 +1,64 @@
 <!--pages/cart/index.wxml-->
-<button  bindtap="handleGet">获取收货地址</button>
+<view>
+    <button wx:if="{{!addRess}}" type='primary' plain bindtap="handleGet">获取收货地址</button>
+    <view wx:else class="address_info">
+        <view class="address_info_name">
+            <view>{{addRess.userName}} </view>
+            <view>{{addRess.chooseddress}} </view>
+        </view>
+        <view class="address_info_ghone">{{addRess.telNumber}}</view>
+    </view>
+
+    <view class="cart">
+        <view class="cart_title">购物车</view>
+        <view class="cart_list"  wx:if="{{cart.length != 0}}">
+            <view class="cart_info" wx:for="{{cart}}" wx:key="goods_id">
+                <!-- 复选框 -->
+                <view class="cart_info_warp">
+                    <checkbox-group bindchange="handleChange" data-index="{{index}}">
+                        <checkbox checked="{{item.checked}}"></checkbox>
+                    </checkbox-group>
+                </view>
+
+
+                <!-- 图片 -->
+                <view class="goods_img">
+                    <image class="" src="{{item.goods_small_logo}}" mode="widthFix" />
+
+                </view>
+                <!-- 信息内容 -->
+                <view class="goods_content">
+                    <view class="goods_content_title">{{item.goods_name}}</view>
+                    <view class="goods_number">
+                        <!-- 价格 -->
+                        <view class="goods_price">￥{{item.goods_price}}</view>
+                        <!-- 添加数量 -->
+                        <view class="goods_num">
+                            <view class="goods_checkBox_num" data-index="{{index}}" bindtap="handlenum"
+                                data-operation="{{-1}}">-</view>
+                            <view class="goods_num_ber">{{item.num}}</view>
+                            <view class="goods_checkBox_num" data-index="{{index}}" bindtap="handlenum"
+                                data-operation="{{1}}">+</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <image wx:else src="http://img5.imgtn.bdimg.com/it/u=3896639434,2608684613&fm=26&gp=0.jpg" mode="widthFix" />
+    </view>
+
+    <view class="btm_cart">
+        <view class="cart_all_wrap">
+            <checkbox-group>
+                <checkbox checked="{{allChecked}}">全选</checkbox>
+            </checkbox-group>
+        </view>
+        <view class="total_price_wrap">
+            <view class="total_price1"> 合计 <text>￥ {{totalPrice}} </text> </view>
+            <view class="total_price2">包含运费</view>
+        </view>
+        <view class="cart_order" bindtap="handleOrderPay">
+            结算({{totalNum}})
+        </view>
+    </view>
+</view>

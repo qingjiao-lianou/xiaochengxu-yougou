@@ -86,3 +86,35 @@ export const chooseAddress = () => {
 
     })
 }
+// promise形式的选择弹框
+export const showModal = (params) => {
+    return new Promise((resolve, reject) => {
+        wx.showModal({
+             ...params,
+            success: (result) => {
+              resolve(result.confirm)
+            },
+            fail: (err) => {
+                reject(err)
+             },
+            complete: () => { }
+        });
+
+    })
+}
+// promise形式的消息提示框
+export const showToast = (params) => {
+    return new Promise((resolve, reject) => {
+        wx.showToast({
+           ...params,
+            icon: 'none',
+            mask: true,
+            success: (result) => {
+                resolve(result)
+            },
+         
+          });
+            
+
+    })
+}
