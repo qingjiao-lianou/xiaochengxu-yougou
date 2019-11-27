@@ -1,2 +1,10 @@
 <!--pages/search/index.wxml-->
-<text>pages/search/index.wxml</text>
+<view class="search_view">
+
+<view class="search_form">
+    <input bindinput="handleInput" type="text" />
+    <button>搜索</button>
+</view>
+<view class="search_list"></view>
+
+</view>

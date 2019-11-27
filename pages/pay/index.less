@@ -1,0 +1,98 @@
+/* pages/cart/index.wxss */
+
+
+.address_info{
+    display: flex;
+    justify-content: space-between;
+    padding: 20rpx;
+    font-size: 28rpx;
+    color: #666;
+}
+// *********************************************************
+.cart_title{
+    color: var(--themeColor);
+    border-top: 1rpx solid currentColor;
+    border-bottom: 1rpx solid currentColor;
+    font-size: 36rpx;
+    padding: 20rpx;
+}
+
+.cart_info{
+    display: flex;
+    border-bottom: 1rpx solid #ccc;
+    padding: 5rpx 0;
+    .goods_img{
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        image {
+          width: 80%;
+        }
+    }
+    .goods_content{
+        flex: 4;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        overflow: hidden;
+        // margin-left: 20rpx;
+        .goods_content_title{
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-size: 30rpx;
+        }
+        .goods_number{
+            display: flex;
+            justify-content: space-between;
+            padding: 10rpx;
+            .goods_price {
+                color: var(--themeColor);
+                font-size: 36rpx;
+              }
+            .goods_num{
+                display: flex;
+                
+              }
+        }
+    }
+}
+// ***********************************************************
+.btm_cart {
+    width: 100%;
+    height: 90rpx;
+    background-color: #fff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border-top: 1rpx solid #ccc;
+    display: flex;
+ 
+    .total_price_wrap {
+      text-align: right;
+      padding: 5rpx;
+      flex: 6;
+      .total_price1 {
+        text {
+          font-weight: 600;
+          font-size: 30rpx;
+          color: var(--themeColor);
+        }
+      }
+  
+     
+    }
+  
+    .cart_order {
+      flex: 4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      background-color: var(--themeColor);
+      font-size: 600px;
+      font-size: 34rpx;
+    }
+  }

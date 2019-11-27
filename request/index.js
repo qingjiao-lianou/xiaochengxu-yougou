@@ -90,13 +90,13 @@ export const chooseAddress = () => {
 export const showModal = (params) => {
     return new Promise((resolve, reject) => {
         wx.showModal({
-             ...params,
+            ...params,
             success: (result) => {
-              resolve(result.confirm)
+                resolve(result.confirm)
             },
             fail: (err) => {
                 reject(err)
-             },
+            },
             complete: () => { }
         });
 
@@ -106,15 +106,31 @@ export const showModal = (params) => {
 export const showToast = (params) => {
     return new Promise((resolve, reject) => {
         wx.showToast({
-           ...params,
+            ...params,
             icon: 'none',
             mask: true,
             success: (result) => {
                 resolve(result)
             },
-         
-          });
-            
+
+        });
+
+
+    })
+}
+// promise形式的登录状态
+export const login = () => {
+    return new Promise((resolve, reject) => {
+        wx.login({
+            timeout: 10000,
+            success: (result) => {
+                resolve(result)
+            },
+            fail: (err) => {
+                reject(err)
+            },
+            complete: () => { }
+        });
 
     })
 }
