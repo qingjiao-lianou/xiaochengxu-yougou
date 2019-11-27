@@ -107,7 +107,6 @@ export const showToast = (params) => {
     return new Promise((resolve, reject) => {
         wx.showToast({
             ...params,
-            icon: 'none',
             mask: true,
             success: (result) => {
                 resolve(result)

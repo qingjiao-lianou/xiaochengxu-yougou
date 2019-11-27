@@ -1,4 +1,4 @@
-import { request } from '../../request/index.js';
+import { request, showToast } from '../../request/index.js';
 import regeneratorRuntime from '../../lib/runtime/runtime';
 
 
@@ -11,17 +11,17 @@ Page({
   data: {
     // 页面详情数据
     goodsDeailData: {},
-
+    // 收藏图标颜色
+    iscolor: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options);
     this.getGoodsDeail(options.goods_id)
+    
   },
-
 
 
   //获取页面详情数据
@@ -32,16 +32,17 @@ Page({
         goods_id
       }
     })
-    // request({
-    //   url: '/goods/detail',
-    //   data: {
-    //     goods_id
-    //   }
-    // }).then(res => {
-   
 
     this.setData({
       goodsDeailData: res
+    })
+    const { goodsDeailData } = this.data
+    const collect = wx.getStorageSync('collect') || [];
+    const index = collect.findIndex(v => v.goods_id === goodsDeailData.goods_id)
+  
+      
+    this.setData({
+      iscolor: index !== -1 ? false : true
     })
     // })
 
@@ -79,13 +80,13 @@ Page({
         goods_price: goodsDeailData.goods_price,
         goods_small_logo: goodsDeailData.goods_small_logo,
         num: 1,
-        checked:true
+        checked: true
       })
 
 
     } else {
       carList[index].num++
-    
+
 
     }
     wx.showToast({
@@ -95,5 +96,33 @@ Page({
     });
     // 从新存到本地
     wx.setStorageSync('cart', carList);
+  },
+
+  // 点击收藏
+  handleCollect() {
+    this.handlCollect()
+
+  },
+
+  async handlCollect() {
+    const { goodsDeailData } = this.data
+    const collect = wx.getStorageSync('collect') || [];
+    const index = collect.findIndex(v => v.goods_id === goodsDeailData.goods_id)
+    if (index === -1) {
+      await showToast({ title: '收藏成功' })
+      collect.push(goodsDeailData)
+      this.setData({
+        iscolor: false
+      })
+    } else {
+      await showToast({ title: '取消成功' })
+      collect.splice(index, 1)
+      this.setData({
+        iscolor: true
+      })
+    }
+    wx.setStorageSync('collect', collect);
+
   }
+
 })

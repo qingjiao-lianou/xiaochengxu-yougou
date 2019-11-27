@@ -24,8 +24,8 @@
         <view class="detail_title_name">
             {{goodsDeailData.goods_name}}
         </view>
-        <view class="detail_title_collect">
-            <text class="iconfont icon-shoucang"> </text>
+        <view class="detail_title_collect" bindtap="handleCollect">
+            <text class="iconfont {{iscolor?'icon-shoucang':'icon-shoucang1'}}"> </text>
 
             <view>
                 收藏

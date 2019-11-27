@@ -31,6 +31,9 @@ page {
   align-items: center;
   justify-content: center;
 }
+.detail_title .detail_title_collect .icon-shoucang1 {
+  color: #ffa500;
+}
 .detail_info .detail_info_title {
   padding: 20rpx;
   border-bottom: 1px solid #ccc;
