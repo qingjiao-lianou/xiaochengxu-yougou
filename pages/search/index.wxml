@@ -2,9 +2,18 @@
 <view class="search_view">
 
 <view class="search_form">
-    <input bindinput="handleInput" type="text" />
-    <button>搜索</button>
+    <input bindinput="handleInput" type="text" value="{{valueIup}}"/>
+    <button wx:if="{{isShow}}" bindtap="handleBtn">取消</button>
 </view>
-<view class="search_list"></view>
+<view class="search_list">
+    <navigator
+    wx:for="{{list}}"
+    wx:key="goods_id"
+    url='/pages/goods_detail/index?goods_id={{item.goods_id}}'
+    >
+        {{item.goods_name}}
+    </navigator>
+      
+</view>
 
 </view>
