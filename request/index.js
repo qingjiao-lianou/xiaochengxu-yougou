@@ -40,7 +40,6 @@ export const request = function (params) {
 
     })
 }
-
 // promise形式的getSetting
 export const getSetting = () => {
     return new Promise((resolve, reject) => {
